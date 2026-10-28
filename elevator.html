@@ -4,10 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>엘리베이터 시뮬레이터</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1b1d22">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="엘리베이터">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <style>
 :root{--bg:#1b1d22;--panel:#2a2d34;--metal:#c9ccd2;--accent:#ff9f1c;--text:#f4f4f5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,sans-serif;-webkit-user-select:none;user-select:none}
+html,body{height:100%;margin:0;overscroll-behavior:none;background:var(--bg);color:var(--text);font-family:"Noto Sans KR",system-ui,sans-serif;-webkit-user-select:none;user-select:none}
 .app{display:flex;height:100%}
 .half{flex:1;display:flex;align-items:center;justify-content:center;padding:16px;min-width:0}
 .left{flex-direction:column;gap:14px;background:#14161a}
@@ -221,6 +228,10 @@ function changeMax(d){
 }
 
 buildPad();
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("service-worker.js").catch(() => {}));
+}
 </script>
 </body>
 </html>
